@@ -1,5 +1,5 @@
-// #ifndef ILI9341_H
-// #define ILI9341_H
+#ifndef ILI9341_H
+#define ILI9341_H
 
 #include <stdint.h>
 
@@ -83,4 +83,4 @@ void ili9341_initialize(struct ili9341_display_t *);
 
 void ili9341_terminate(struct ili9341_display_t *);
 
-// #endif
+#endif
