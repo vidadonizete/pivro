@@ -4,4 +4,9 @@ project("ili9341_pico" LANGUAGES C CXX ASM)
 
 add_library(ili9341_pico pico.c)
 
-target_link_libraries(ili9341_pico ili9341)
+target_link_libraries(
+    ili9341_pico
+    ili9341
+    pico_stdlib
+    hardware_spi
+)
