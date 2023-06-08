@@ -68,14 +68,22 @@ enum ili9341_display_enum
 struct ili9341_display_t
 {
     // RST
+    // Reset
     uint8_t rst;
     // CS/SS
+    // Chip select
     uint8_t cs;
     // SCLK/SCK
+    // Serial clock
     uint8_t rs;
-    // DC
+    // D/CX
+    // Data / Command register sel
     uint8_t wr;
     // MOSI/TX
+    // (master perspective: )
+    // Master output slave input
+    // (slave perspective: )
+    // Serial data input
     uint8_t sdi;
 };
 

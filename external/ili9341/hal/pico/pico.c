@@ -30,11 +30,6 @@ void ili9341_hal_display_write_command(uint8_t cmd, struct ili9341_display_t *di
     gpio_put(display->cs, 1);
 }
 
-void ili9341_hal_display_sleep_ms(uint32_t ms)
-{
-    sleep_ms(ms);
-}
-
 void ili9341_hal_display_terminate(struct ili9341_display_t *display)
 {
 }

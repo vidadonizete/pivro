@@ -1,5 +1,6 @@
-#include <ili9341/display.h>
 #include <pico/stdlib.h>
+
+#include <ili9341/display.h>
 
 int main()
 {
