@@ -5,14 +5,15 @@ project("ili9341" LANGUAGES C CXX ASM)
 add_library(ili9341 common/ili9341.c)
 
 target_include_directories(
+    ili9341 PRIVATE include/private
     ili9341 PUBLIC include/public
-    #TODO(learn it later)
-    ili9341 PUBLIC include/private
+)
+
+add_library(ili9341_hal INTERFACE)
+
+target_include_directories(
+    ili9341_hal INTERFACE include/public
+    ili9341_hal INTERFACE include/private
 )
 
 add_subdirectory(hal)
-
-target_link_libraries(
-    ili9341
-    ili9341_hal
-)

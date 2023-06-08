@@ -10,9 +10,5 @@ set(CMAKE_CXX_STANDARD 17)
 
 pico_sdk_init()
 
-add_executable(main main.c)
-
-target_link_libraries(main pico_stdlib)
-
-add_subdirectory(external/ili9341)
-target_link_libraries(main ili9341)
+add_subdirectory(products)
+add_subdirectory(external)

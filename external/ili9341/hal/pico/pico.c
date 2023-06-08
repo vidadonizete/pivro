@@ -1,17 +1,7 @@
-#include <ili9341/hal.h>
-
 #include <pico/stdlib.h>
 #include <hardware/spi.h>
 
-void ili9341_hal_write_command(uint8_t cmd, struct ili9341_display_t *display)
-{
-    gpio_put(display->wr, 0);
-    gpio_put(display->cs, 0);
-    static uint8_t src[1];
-    src[0] = cmd;
-    spi_write_blocking(spi_default, src, 1);
-    gpio_put(display->cs, 1);
-}
+#include <ili9341/hal.h>
 
 void ili9341_hal_initialize(struct ili9341_display_t *display)
 {
@@ -28,6 +18,21 @@ void ili9341_hal_initialize(struct ili9341_display_t *display)
     INIT(display->cs, GPIO_OUT, true)
     INIT(display->wr, GPIO_OUT, false)
     INIT(display->rst, GPIO_OUT, true)
+}
+
+void ili9341_hal_write_command(uint8_t cmd, struct ili9341_display_t *display)
+{
+    gpio_put(display->wr, 0);
+    gpio_put(display->cs, 0);
+    static uint8_t src[1];
+    src[0] = cmd;
+    spi_write_blocking(spi_default, src, 1);
+    gpio_put(display->cs, 1);
+}
+
+void ili9341_hal_sleep_ms(uint32_t ms)
+{
+    sleep_ms(ms);
 }
 
 void ili9341_hal_terminate(struct ili9341_display_t *display)

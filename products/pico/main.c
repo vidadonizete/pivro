@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include <ili9341/common.h>
 
 int main()
@@ -19,7 +17,7 @@ int main()
     ili9341_initialize(&display);
     ili9341_terminate(&display);
 
-    while (1) {
-
+    while (1)
+    {
     }
 }
