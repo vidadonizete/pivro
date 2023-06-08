@@ -1,9 +1,9 @@
-#ifndef ILI9341_H
-#define ILI9341_H
+#ifndef _ILI9341_DISPLAY_H_
+#define _ILI9341_DISPLAY_H_
 
 #include <stdint.h>
 
-enum ili9341_command
+enum ili9341_display_enum
 {
     // Command constants from ILI9341 datasheet
     ILI9341_CMD_NOP = 0x00,                      // No-op
@@ -69,18 +69,18 @@ struct ili9341_display_t
 {
     // RST
     uint8_t rst;
-    // CS
+    // CS/SS
     uint8_t cs;
-    // SCLK
+    // SCLK/SCK
     uint8_t rs;
     // DC
     uint8_t wr;
-    // MOSI
+    // MOSI/TX
     uint8_t sdi;
 };
 
-void ili9341_initialize(struct ili9341_display_t *);
+void ili9341_display_initialize(struct ili9341_display_t *);
 
-void ili9341_terminate(struct ili9341_display_t *);
+void ili9341_display_terminate(struct ili9341_display_t *);
 
-#endif
+#endif //_ILI9341_DISPLAY_H_

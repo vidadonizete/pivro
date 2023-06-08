@@ -1,9 +1,9 @@
 #include <pico/stdlib.h>
 #include <hardware/spi.h>
 
-#include <ili9341/hal.h>
+#include <ili9341/hal/display.h>
 
-void ili9341_hal_initialize(struct ili9341_display_t *display)
+void ili9341_hal_display_initialize(struct ili9341_display_t *display)
 {
     spi_init(spi_default, 40 * 1000 * 1000);
 
@@ -20,7 +20,7 @@ void ili9341_hal_initialize(struct ili9341_display_t *display)
     INIT(display->rst, GPIO_OUT, true)
 }
 
-void ili9341_hal_write_command(uint8_t cmd, struct ili9341_display_t *display)
+void ili9341_hal_display_write_command(uint8_t cmd, struct ili9341_display_t *display)
 {
     gpio_put(display->wr, 0);
     gpio_put(display->cs, 0);
@@ -30,11 +30,11 @@ void ili9341_hal_write_command(uint8_t cmd, struct ili9341_display_t *display)
     gpio_put(display->cs, 1);
 }
 
-void ili9341_hal_sleep_ms(uint32_t ms)
+void ili9341_hal_display_sleep_ms(uint32_t ms)
 {
     sleep_ms(ms);
 }
 
-void ili9341_hal_terminate(struct ili9341_display_t *display)
+void ili9341_hal_display_terminate(struct ili9341_display_t *display)
 {
 }
