@@ -9,4 +9,9 @@ target_link_libraries(
 
 add_library(ili9341_pico)
 
-target_link_libraries(ili9341_pico ili9341 ili9341_hal_pico)
+target_link_libraries(
+    ili9341_pico 
+    ili9341 
+    ili9341_hal_pico
+    hardware_pico
+)

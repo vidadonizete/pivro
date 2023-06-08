@@ -10,5 +10,5 @@ set(CMAKE_CXX_STANDARD 17)
 
 pico_sdk_init()
 
-add_subdirectory(products)
 add_subdirectory(external)
+add_subdirectory(products)
