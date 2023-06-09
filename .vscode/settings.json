@@ -17,8 +17,5 @@
         }
     },
     "cmake.buildBeforeRun": true,
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
-    "files.associations": {
-        "display.h": "c"
-    }
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }

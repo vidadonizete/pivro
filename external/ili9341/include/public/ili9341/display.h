@@ -8,7 +8,7 @@ enum ili9341_display_enum
     // Command constants from ILI9341 datasheet
     ILI9341_CMD_NOP = 0x00,                      // No-op
     ILI9341_CMD_SWRESET = 0x01,                  // Software reset
-    ILI9341_CMD_RDDID = 0x04,                    // Read display ID info
+    ILI9341_CMD_RDDID = 0x04,                    // Read display idenfication information
     ILI9341_CMD_RDDST = 0x09,                    // Read display status
     ILI9341_CMD_SLPIN = 0x10,                    // Enter sleep mode
     ILI9341_CMD_SLPOUT = 0x11,                   // Exit sleep mode
@@ -77,8 +77,10 @@ struct ili9341_display_t
     // Serial clock
     uint8_t rs;
     // D/CX
-    // Data / Command register sel
-    uint8_t wr;
+    // Data/Command selection input
+    // When DCX = ’1’, data is selected
+    // When DCX = ’0’, command is selected
+    uint8_t dc;
     // MOSI/TX
     // (master perspective: )
     // Master output slave input
@@ -87,8 +89,19 @@ struct ili9341_display_t
     uint8_t sdi;
 };
 
-void ili9341_display_initialize(struct ili9341_display_t *);
+void ili9341_display_initialize(
+    struct ili9341_display_t *_display);
 
-void ili9341_display_terminate(struct ili9341_display_t *);
+void ili9341_display_reset(
+    struct ili9341_display_t *_display);
+
+void ili9341_display_draw_pixel(
+    struct ili9341_display_t *_display,
+    uint8_t _x,
+    uint8_t _y,
+    uint16_t _color);
+
+void ili9341_display_terminate(
+    struct ili9341_display_t *_display);
 
 #endif //_ILI9341_DISPLAY_H_
