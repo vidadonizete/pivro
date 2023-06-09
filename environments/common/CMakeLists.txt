@@ -10,4 +10,5 @@ set(CMAKE_CXX_STANDARD 17)
 ${before_subdirectories}
 
 add_subdirectory(external)
+add_subdirectory(hal)
 add_subdirectory(products)
