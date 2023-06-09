@@ -11,7 +11,7 @@ void pivro_display_draw_buffer(
     uint8_t *buffer,
     size_t size)
 {
-    ili9341_display_draw_buffer(buffer,size);
+    ili9341_display_draw_buffer(buffer, size);
 }
 
 void pivro_display_terminate()
