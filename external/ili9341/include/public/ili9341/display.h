@@ -2,6 +2,7 @@
 #define _ILI9341_DISPLAY_H_
 
 #include <stdint.h>
+#include <stddef.h>
 
 enum ili9341_display_enum
 {
@@ -65,43 +66,12 @@ enum ili9341_display_enum
     ILI9341_CMD_PUMPRC = 0xF7,             // Pump ratio control
 };
 
-struct ili9341_display_t
-{
-    // RST
-    // Reset
-    uint8_t rst;
-    // CS/SS
-    // Chip select
-    uint8_t cs;
-    // SCLK/SCK
-    // Serial clock
-    uint8_t rs;
-    // D/CX
-    // Data/Command selection input
-    // When DCX = ’1’, data is selected
-    // When DCX = ’0’, command is selected
-    uint8_t dc;
-    // MOSI/TX
-    // (master perspective: )
-    // Master output slave input
-    // (slave perspective: )
-    // Serial data input
-    uint8_t sdi;
-};
+void ili9341_display_initialize();
 
-void ili9341_display_initialize(
-    struct ili9341_display_t *_display);
+void ili9341_display_draw_buffer(
+    uint8_t* _buffer, 
+    size_t _size);
 
-void ili9341_display_reset(
-    struct ili9341_display_t *_display);
-
-void ili9341_display_draw_pixel(
-    struct ili9341_display_t *_display,
-    uint8_t _x,
-    uint8_t _y,
-    uint16_t _color);
-
-void ili9341_display_terminate(
-    struct ili9341_display_t *_display);
+void ili9341_display_terminate();
 
 #endif //_ILI9341_DISPLAY_H_

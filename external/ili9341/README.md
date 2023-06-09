@@ -8,3 +8,7 @@
 | D/CX (WR)| DC      | Data / Command register sel |
 | CSX      | CS      | Chip Select (Active Low)    |
 | RST      | RST     | Reset                       |
+
+# References:
+Code is almost as a copy of:
+https://github.com/JeremySayers/pi-pico-ili9341-display
