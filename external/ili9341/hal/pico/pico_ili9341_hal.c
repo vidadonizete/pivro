@@ -102,7 +102,6 @@ void ili9341_hal_display_draw_buffer(
     uint16_t *buffer,
     size_t size)
 {
-    ili9341_hal_display_write_command(ILI9341_CMD_WRITE_RAM);
     dc_deselect();
     cs_select();
     spi_write_blocking(SPI_PORT, (uint8_t *)buffer, size * 2);

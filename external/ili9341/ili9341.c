@@ -52,15 +52,6 @@ static uint8_t INIT_DISPLAY_DATA[] = {
     ILI9341_CMD_GMCTRN1, 15, // Set Gamma
     0x00, 0x0E, 0x14, 0x03, 0x11, 0x07, 0x31, 0xC1,
     0x48, 0x08, 0x0F, 0x0C, 0x31, 0x36, 0x0F,
-    ILI9341_CMD_SET_COLUMN, 4,
-    0, 0, 
-    0, SCREEN_WIDTH - 1,
-    ILI9341_CMD_SET_PAGE, 4,
-    0, 0,
-    //this is 319 number. It wont fit on uint8 unit
-    //needs to be broken
-    //most left 8 bits        //most right 8 bits
-    (SCREEN_HEIGHT - 1) >> 8, (uint8_t)(SCREEN_HEIGHT - 1),
     ILI9341_CMD_SLPOUT, 0,     // Exit Sleep
     ILI9341_CMD_DISPLAY_ON, 0, // Display on
     ILI9341_CMD_NORON, 0,
@@ -104,6 +95,7 @@ void ili9341_display_draw_buffer(
     uint16_t* buffer,
     size_t size)
 {
+    ili9341_hal_display_write_command(ILI9341_CMD_WRITE_RAM);
     ili9341_hal_display_draw_buffer(buffer, size);
 }
 
