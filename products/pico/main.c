@@ -10,10 +10,9 @@ static uint16_t buffer[BUFFER_SIZE];
 
 int main()
 {
-    pivro_display_initialize();
-    pivro_setup_window(
-        0, SCREEN_WIDTH - 1,
-        0, SCREEN_HEIGHT - 1
+    pivro_display_initialize(
+        SCREEN_WIDTH,
+        SCREEN_HEIGHT
     );
 
     uint16_t color = 0;

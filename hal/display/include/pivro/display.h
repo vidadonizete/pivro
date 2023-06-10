@@ -4,9 +4,12 @@
 #include <stdint.h>
 #include <stddef.h>
 
-void pivro_display_initialize();
+void pivro_display_initialize(
+    uint16_t width,
+    uint16_t height
+);
 
-void pivro_setup_window(
+void pivro_display_resize(
     uint16_t _x1,
     uint16_t _x2,
     uint16_t _y1,

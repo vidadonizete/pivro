@@ -2,22 +2,26 @@
 
 #include <ili9341/display.h>
 
-void pivro_display_initialize()
+void pivro_display_initialize(
+    uint16_t width,
+    uint16_t height)
 {
-    ili9341_display_initialize();
+    ili9341_display_initialize(
+        width,
+        height);
 }
 
-void pivro_setup_window(
+void pivro_display_resize(
     uint16_t x1,
     uint16_t x2,
     uint16_t y1,
     uint16_t y2)
 {
-    ili9341_setup_window(x1, x2, y1, y2);
+    ili9341_display_resize(x1, x2, y1, y2);
 }
 
 void pivro_display_draw_buffer(
-    uint16_t* buffer,
+    uint16_t *buffer,
     size_t size)
 {
     ili9341_display_draw_buffer(buffer, size);

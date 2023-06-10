@@ -66,16 +66,18 @@ enum ili9341_display_enum
     ILI9341_CMD_PUMPRC = 0xF7,             // Pump ratio control
 };
 
-void ili9341_display_initialize();
+void ili9341_display_initialize(
+    uint16_t _width,
+    uint16_t _height);
 
-void ili9341_setup_window(
+void ili9341_display_resize(
     uint16_t _x1,
     uint16_t _x2,
     uint16_t _y1,
     uint16_t _y2);
 
 void ili9341_display_draw_buffer(
-    uint16_t* _buffer, 
+    uint16_t *_buffer,
     size_t _size);
 
 void ili9341_display_terminate();

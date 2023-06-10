@@ -51,15 +51,17 @@ static uint8_t INIT_DISPLAY_DATA[] = {
     ILI9341_CMD_SLPOUT, 0,     // Exit Sleep
     ILI9341_CMD_DISPLAY_ON, 0, // Display on
     ILI9341_CMD_NORON, 0,
-    ILI9341_CMD_NOP           // End of list
+    ILI9341_CMD_NOP // End of list
 };
 
-void ili9341_display_initialize()
+void ili9341_display_initialize(
+    uint16_t width,
+    uint16_t height)
 {
     ili9341_hal_display_initialize();
     uint8_t *ptr = INIT_DISPLAY_DATA;
     uint8_t cmd, size;
-    while ( (cmd = *ptr++) > 0)
+    while ((cmd = *ptr++) > 0)
     {
         size = *ptr++;
         ili9341_hal_display_write_command(cmd);
@@ -70,9 +72,12 @@ void ili9341_display_initialize()
         ili9341_hal_sleep_ms(100);
         ptr += size;
     }
+    ili9341_display_resize(
+        0, width - 1,
+        0, height - 1);
 }
 
-void ili9341_setup_window(
+void ili9341_display_resize(
     uint16_t x1,
     uint16_t x2,
     uint16_t y1,
@@ -88,7 +93,7 @@ void ili9341_setup_window(
 }
 
 void ili9341_display_draw_buffer(
-    uint16_t* buffer,
+    uint16_t *buffer,
     size_t size)
 {
     ili9341_hal_display_write_command(ILI9341_CMD_WRITE_RAM);

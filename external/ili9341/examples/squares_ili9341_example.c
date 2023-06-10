@@ -44,10 +44,9 @@ static inline void draw_square(struct square_t *square)
 
 void main()
 {
-    ili9341_display_initialize();
-    ili9341_setup_window(
-        0, SCREEN_WIDTH - 1,
-        0, SCREEN_HEIGHT - 1);
+    ili9341_display_initialize(
+        SCREEN_WIDTH,
+        SCREEN_HEIGHT);
 
     struct square_t squares[SQUARES] = {};
 
