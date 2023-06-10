@@ -19,6 +19,8 @@
     "cmake.buildBeforeRun": true,
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "files.associations": {
-        "display.h": "c"
+        "display.h": "c",
+        "ili9341_example.h": "c",
+        "cstdlib": "c"
     }
 }

@@ -22,3 +22,4 @@ target_include_directories(
 )
 
 add_subdirectory(hal)
+add_subdirectory(examples)
