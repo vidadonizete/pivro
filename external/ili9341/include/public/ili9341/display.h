@@ -68,6 +68,12 @@ enum ili9341_display_enum
 
 void ili9341_display_initialize();
 
+void ili9341_setup_window(
+    uint16_t _x1,
+    uint16_t _x2,
+    uint16_t _y1,
+    uint16_t _y2);
+
 void ili9341_display_draw_buffer(
     uint16_t* _buffer, 
     size_t _size);

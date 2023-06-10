@@ -11,19 +11,24 @@ static uint16_t buffer[BUFFER_SIZE];
 int main()
 {
     pivro_display_initialize();
+    pivro_setup_window(
+        0, SCREEN_WIDTH - 1,
+        0, SCREEN_HEIGHT - 1
+    );
+
+    uint16_t color = 0;
     while (1)
     {
-        for (size_t i = 0; i < SCREEN_HEIGHT; i++)
+        for (size_t i = 0; i < SCREEN_HEIGHT; i++, color++)
         {
             uint16_t* row = buffer + i * SCREEN_WIDTH;
-            uint16_t color = rand();
             for (size_t j = 0; j < SCREEN_WIDTH; j++)
             {
                 row[j] = color;
             }
         }
         pivro_display_draw_buffer(buffer, BUFFER_SIZE);
-        sleep_ms(5000);
+        sleep_ms(1000);
     }
     pivro_display_terminate();
 }

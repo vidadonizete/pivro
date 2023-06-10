@@ -92,7 +92,10 @@ void ili9341_hal_display_write_data_byte(
 void ili9341_hal_display_write_data_short(
     uint16_t data)
 {
-    ili9341_hal_display_write_data((uint8_t *)&data, 2);
+    static uint8_t buffer[2];
+    buffer[0] = data >> 8;
+    buffer[1] = data;
+    ili9341_hal_display_write_data(buffer, 2);
 }
 
 void ili9341_hal_display_draw_buffer(

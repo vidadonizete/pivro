@@ -85,6 +85,21 @@ void ili9341_display_initialize()
     }
 }
 
+void ili9341_setup_window(
+    uint16_t x1,
+    uint16_t x2,
+    uint16_t y1,
+    uint16_t y2)
+{
+    ili9341_hal_display_write_command(ILI9341_CMD_SET_COLUMN);
+    ili9341_hal_display_write_data_short(x1);
+    ili9341_hal_display_write_data_short(x2);
+
+    ili9341_hal_display_write_command(ILI9341_CMD_SET_PAGE);
+    ili9341_hal_display_write_data_short(y1);
+    ili9341_hal_display_write_data_short(y2);
+}
+
 void ili9341_display_draw_buffer(
     uint16_t* buffer,
     size_t size)
