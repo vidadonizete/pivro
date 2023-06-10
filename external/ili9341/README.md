@@ -10,6 +10,6 @@
 | RST      | RST     | Reset                       |
 
 # References:
-Code is almost as a copy of:
-https://github.com/JeremySayers/pi-pico-ili9341-display
+Code is almost as a copy of:  
+https://github.com/JeremySayers/pi-pico-ili9341-display  
 https://github.com/adafruit/Adafruit_ILI9341
