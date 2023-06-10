@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <pico/stdlib.h>
 
@@ -13,7 +14,7 @@
 
 static uint16_t buffer[BUFFER_SIZE];
 
-struct vector_t
+struct point_2
 {
     int16_t x;
     int16_t y;
@@ -21,9 +22,10 @@ struct vector_t
 
 struct circle_t
 {
-    struct vector_t position;
-    struct vector_t direction;
+    struct point_2 position;
+    struct point_2 direction;
     uint16_t radius;
+    uint16_t color;
 };
 // h^2 = c^2 + c^2;
 static inline uint8_t intersect(
@@ -33,8 +35,24 @@ static inline uint8_t intersect(
     uint16_t y2,
     uint8_t radius)
 {
-    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)) > radius;
+    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)) <= radius;
 }
+
+static inline void draw_circle(struct circle_t *circle)
+{
+    for (uint16_t y = circle->position.y - circle->radius; y < (circle->position.y + circle->radius) && y < SCREEN_HEIGHT; y++)
+    {
+        for (uint16_t x = circle->position.x - circle->radius; x < (circle->position.x + circle->radius) && x < SCREEN_WIDTH; x++)
+        {
+            if (intersect(x, circle->position.x, y, circle->position.y, circle->radius)) //heavy as fuck
+            {
+                buffer[y * SCREEN_WIDTH + x] = circle->color;
+            }
+        }
+    }
+}
+
+#define CIRCLES 30
 
 void main()
 {
@@ -43,47 +61,38 @@ void main()
         0, SCREEN_WIDTH - 1,
         0, SCREEN_HEIGHT - 1);
 
-    struct circle_t circle = {
-        .position = {
-            .x = 10,
-            .y = 10,
-        },
-        .direction = {
-            .x = 30,
-            .y = 30,
-        },
-        .radius = 10,
-    };
+    struct circle_t circles[CIRCLES];
+
+    for (uint8_t i = 0; i < CIRCLES; i++)
+    {
+        struct circle_t *circle = circles + i;
+        circle->position.x = rand() % SCREEN_WIDTH;
+        circle->position.y = rand() % SCREEN_HEIGHT;
+        circle->direction.x = rand() % 10 + 2;
+        circle->direction.y = rand() % 10 + 2;
+        circle->radius = rand() % 6 + 2; //a bigger radius will cause more intercept() calls
+        circle->color = rand();
+    }
 
     while (1)
     {
-        circle.position.x += circle.direction.x;
-        circle.position.y += circle.direction.y;
-
-        for (size_t i = 0; i < SCREEN_HEIGHT; i++)
+        memset(buffer, 0, sizeof(buffer));
+        for (uint8_t i = 0; i < CIRCLES; i++)
         {
-            uint16_t *row = buffer + i * SCREEN_WIDTH;
-            for (size_t j = 0; j < SCREEN_WIDTH; j++)
+            struct circle_t *circle = circles + i;
+            if ((circle->position.x + circle->radius) > SCREEN_WIDTH || (circle->position.x - circle->radius) < 0)
             {
-                if (intersect(j, circle.position.x, i, circle.position.y, circle.radius))
-                {
-                    row[j] = 0x0;
-                }
-                else
-                {
-                    row[j] = 0xFFFF;
-                }
+                circle->direction.x *= -1;
             }
+            if ((circle->position.y + circle->radius) > SCREEN_HEIGHT || (circle->position.y - circle->radius) < 0)
+            {
+                circle->direction.y *= -1;
+            }
+            circle->position.x += circle->direction.x;
+            circle->position.y += circle->direction.y;
+            draw_circle(circle);
         }
         ili9341_display_draw_buffer(buffer, BUFFER_SIZE);
-        if ((circle.position.x + circle.radius) > SCREEN_WIDTH || (circle.position.x - circle.radius) < 0)
-        {
-            circle.direction.x *= -1;
-        }
-        if ((circle.position.y + circle.radius) > SCREEN_HEIGHT || (circle.position.y - circle.radius) < 0)
-        {
-            circle.direction.y *= -1;
-        }
     }
     ili9341_display_terminate();
 }
