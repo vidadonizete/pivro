@@ -69,7 +69,7 @@ enum ili9341_display_enum
 void ili9341_display_initialize();
 
 void ili9341_display_draw_buffer(
-    uint8_t* _buffer, 
+    uint16_t* _buffer, 
     size_t _size);
 
 void ili9341_display_terminate();

@@ -70,7 +70,6 @@ void ili9341_hal_display_write_command(
     dc_select();
     cs_select();
     spi_write_blocking(SPI_PORT, &cmd, 1);
-    dc_deselect();
     cs_deselect();
 }
 
@@ -78,8 +77,8 @@ void ili9341_hal_display_write_data(
     uint8_t *data,
     size_t size)
 {
-    cs_select();
     dc_deselect();
+    cs_select();
     spi_write_blocking(SPI_PORT, data, size);
     cs_deselect();
 }
@@ -93,23 +92,18 @@ void ili9341_hal_display_write_data_byte(
 void ili9341_hal_display_write_data_short(
     uint16_t data)
 {
-    static uint8_t buffer[2];
-    buffer[0] = data >> 8;
-    buffer[1] = data;
-    ili9341_hal_display_write_data(buffer, 2);
-}
-
-void ili9341_hal_display_initialize_draw_mode()
-{
-    cs_select();
-    dc_deselect();
+    ili9341_hal_display_write_data((uint8_t *)&data, 2);
 }
 
 void ili9341_hal_display_draw_buffer(
-    uint8_t *buffer,
+    uint16_t *buffer,
     size_t size)
 {
-    spi_write_blocking(SPI_PORT, buffer, size);
+    ili9341_hal_display_write_command(ILI9341_CMD_WRITE_RAM);
+    dc_deselect();
+    cs_select();
+    spi_write_blocking(SPI_PORT, (uint8_t *)buffer, size * 2);
+    cs_deselect();
 }
 
 void ili9341_hal_display_terminate()

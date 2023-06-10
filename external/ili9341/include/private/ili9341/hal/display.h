@@ -19,10 +19,8 @@ void ili9341_hal_display_write_data_byte(
 void ili9341_hal_display_write_data_short(
     uint16_t _data);
 
-void ili9341_hal_display_initialize_draw_mode();
-
 void ili9341_hal_display_draw_buffer(
-    uint8_t *_buffer,
+    uint16_t *_buffer,
     size_t _size);
 
 void ili9341_hal_display_terminate();

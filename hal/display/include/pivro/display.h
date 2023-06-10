@@ -7,7 +7,7 @@
 void pivro_display_initialize();
 
 void pivro_display_draw_buffer(
-    uint8_t* _buffer, 
+    uint16_t* _buffer, 
     size_t _size);
 
 void pivro_display_terminate();
