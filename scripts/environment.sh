@@ -34,13 +34,20 @@ copycontent()
 
 lunch()
 {
-    checkfolder $1
+    SELECTED_FOLDER=$1
+    checkfolder $SELECTED_FOLDER
     [[ $? -eq 1 ]] && return 1
+
+    rm -rdf $ROOT/.vscode
     
     cp $ENVIRONMENTS/common/CMakeLists.txt $ROOT
 
     GENERATED_CMAKE=$ROOT/CMakeLists.txt
-    SELECTED_ENVIRONMENT=$ENVIRONMENTS/$1/CMakeLists.txt
+    SELECTED_ENVIRONMENT=$ENVIRONMENTS/$SELECTED_FOLDER
 
-    copycontent $SELECTED_ENVIRONMENT $GENERATED_CMAKE
+    copycontent $SELECTED_ENVIRONMENT/CMakeLists.txt $GENERATED_CMAKE
+
+    if [[ -d $SELECTED_ENVIRONMENT/.vscode ]]; then
+        cp -R $SELECTED_ENVIRONMENT/.vscode $ROOT/
+    fi
 }

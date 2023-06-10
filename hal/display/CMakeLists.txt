@@ -5,3 +5,4 @@ target_include_directories(
 )
 
 add_subdirectory(pico)
+add_subdirectory(linux)

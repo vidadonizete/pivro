@@ -5,8 +5,8 @@
 #include <stddef.h>
 
 void pivro_display_initialize(
-    uint16_t width,
-    uint16_t height
+    uint16_t _width,
+    uint16_t _height
 );
 
 void pivro_display_resize(
