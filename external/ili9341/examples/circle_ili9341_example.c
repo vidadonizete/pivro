@@ -27,6 +27,7 @@ struct circle_t
     uint16_t radius;
     uint16_t color;
 };
+
 // h^2 = c^2 + c^2;
 static inline uint8_t intersect(
     uint16_t x1,
@@ -40,11 +41,12 @@ static inline uint8_t intersect(
 
 static inline void draw_circle(struct circle_t *circle)
 {
-    for (uint16_t y = circle->position.y - circle->radius; y < (circle->position.y + circle->radius) && y < SCREEN_HEIGHT; y++)
+    uint16_t radius = circle->radius;
+    for (uint16_t y = circle->position.y - radius; y < (circle->position.y + radius) && y < SCREEN_HEIGHT; y++)
     {
-        for (uint16_t x = circle->position.x - circle->radius; x < (circle->position.x + circle->radius) && x < SCREEN_WIDTH; x++)
+        for (uint16_t x = circle->position.x - radius; x < (circle->position.x + radius) && x < SCREEN_WIDTH; x++)
         {
-            if (intersect(x, circle->position.x, y, circle->position.y, circle->radius)) //heavy as fuck
+            if (intersect(x, circle->position.x, y, circle->position.y, radius)) // heavy as fuck
             {
                 buffer[y * SCREEN_WIDTH + x] = circle->color;
             }
@@ -70,7 +72,7 @@ void main()
         circle->position.y = rand() % SCREEN_HEIGHT;
         circle->direction.x = rand() % 10 + 2;
         circle->direction.y = rand() % 10 + 2;
-        circle->radius = rand() % 6 + 2; //a bigger radius will cause more intercept() calls
+        circle->radius = rand() % 6 + 2; // a bigger radius will cause more intercept() calls
         circle->color = rand();
     }
 
