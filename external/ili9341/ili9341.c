@@ -2,11 +2,7 @@
 
 #include <ili9341/display.h>
 #include <ili9341/hal/display.h>
-
-#include <hardware/sleep.h>
-
-#define SCREEN_WIDTH 240
-#define SCREEN_HEIGHT 320
+#include <ili9341/hal/sleep.h>
 
 static uint8_t INIT_DISPLAY_DATA[] = {
     0xEF, 3,
@@ -42,7 +38,7 @@ static uint8_t INIT_DISPLAY_DATA[] = {
     0x00, 0x1F,
     ILI9341_CMD_DFUNCTR, 3, // Display Function Control
     0x08, 0x82, 0x27,
-    ILI9341_CMD_ENABLE3G, 1, // 3Gamma Function Disable
+    ILI9341_CMD_ENABLE3G, 1, // 3Gamma Functiohardware_sleep_msn Disable
     0x00,
     ILI9341_CMD_GAMMASET, 1, // Gamma curve selected
     0x01,
@@ -71,7 +67,7 @@ void ili9341_display_initialize()
         {
             ili9341_hal_display_write_data(ptr, size);
         }
-        hardware_sleep_ms(100);
+        ili9341_hal_sleep_ms(100);
         ptr += size;
     }
 }

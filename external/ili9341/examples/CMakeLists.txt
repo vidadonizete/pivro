@@ -10,5 +10,5 @@ target_link_libraries(
 )
 endmacro()
 
-ili9341_example(circle)
+ili9341_example(circles)
 ili9341_example(squares)

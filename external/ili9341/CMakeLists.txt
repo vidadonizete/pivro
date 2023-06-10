@@ -9,11 +9,6 @@ target_include_directories(
     ili9341 PUBLIC include/public
 )
 
-target_link_libraries(
-    ili9341
-    hardware
-)
-
 add_library(ili9341_hal INTERFACE)
 
 target_include_directories(
