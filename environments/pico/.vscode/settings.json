@@ -17,10 +17,5 @@
         }
     },
     "cmake.buildBeforeRun": true,
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
-    "files.associations": {
-        "display.h": "c",
-        "ili9341_example.h": "c",
-        "cstdlib": "c"
-    }
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }
