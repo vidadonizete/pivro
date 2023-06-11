@@ -27,9 +27,9 @@ void pivro_display_draw_buffer(
     ili9341_display_draw_buffer(buffer, size);
 }
 
-void pivro_display_tick()
+bool pivro_display_tick(size_t ms)
 {
-    
+    return true;
 }
 
 void pivro_display_terminate()

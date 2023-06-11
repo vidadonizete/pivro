@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include <pivro/display.h>
+#include <pivro/time.h>
 
 #define SCREEN_WIDTH 240
 #define SCREEN_HEIGHT 320
@@ -56,7 +57,7 @@ void main()
         square->direction.y = rand() % 10 + 1;
     }
 
-    while (1)
+    while (pivro_display_tick(0))
     {
         memset(buffer, 0, sizeof(buffer));
         for (uint8_t i = 0; i < SQUARES; i++)
@@ -77,7 +78,6 @@ void main()
             draw_square(square);
         }
         pivro_display_draw_buffer(buffer, BUFFER_SIZE);
-        pivro_display_tick();
     }
     pivro_display_terminate();
 }

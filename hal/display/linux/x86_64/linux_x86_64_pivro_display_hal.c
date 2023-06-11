@@ -64,16 +64,17 @@ void pivro_display_draw_buffer(
     SDL_RenderPresent(renderer);
 }
 
-void pivro_display_tick()
+bool pivro_display_tick(size_t ms)
 {
     while (SDL_PollEvent(&event))
     {
         switch (event.type)
         {
         case SDL_QUIT:
-            return pivro_display_terminate();
+            return false;
         }
     }
+    return true;
 }
 
 void pivro_display_terminate()

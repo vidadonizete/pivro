@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdbool.h>
 
 void pivro_display_initialize(
     uint16_t _width,
@@ -19,7 +20,7 @@ void pivro_display_draw_buffer(
     uint16_t *_buffer,
     size_t _size);
 
-void pivro_display_tick();
+bool pivro_display_tick(size_t ms);
 
 void pivro_display_terminate();
 
