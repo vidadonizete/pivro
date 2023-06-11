@@ -3,7 +3,7 @@ add_library(
     linux_x86_64_pivro_display_hal.c
 )
 
-find_package(SDL2 REQUIRED)
+find_package(SDL2 QUIET)
 
 target_link_libraries(
     linux_x86_64_pivro_display_hal
