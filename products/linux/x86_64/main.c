@@ -12,6 +12,7 @@ int main()
         SCREEN_HEIGHT);
     while (1)
     {
+        pivro_display_tick();
     }
     pivro_display_terminate();
 }

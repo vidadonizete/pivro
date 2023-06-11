@@ -27,6 +27,11 @@ void pivro_display_draw_buffer(
     ili9341_display_draw_buffer(buffer, size);
 }
 
+void pivro_display_tick()
+{
+    
+}
+
 void pivro_display_terminate()
 {
     ili9341_display_terminate();

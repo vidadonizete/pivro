@@ -19,6 +19,8 @@ void pivro_display_draw_buffer(
     uint16_t *_buffer,
     size_t _size);
 
+void pivro_display_tick();
+
 void pivro_display_terminate();
 
 #endif //_PIVRO_DISPLAY_H_
