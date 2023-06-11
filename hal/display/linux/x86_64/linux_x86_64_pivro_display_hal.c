@@ -47,6 +47,21 @@ void pivro_display_draw_buffer(
     uint16_t *buffer,
     size_t size)
 {
+    static int width;
+    static int height;
+    SDL_GetWindowSize(window, &width, &height);
+
+    for (uint16_t i = 0; i < height; i++)
+    {
+        for (uint16_t j = 0; j < width; j++)
+        {
+            //RGB565
+            uint16_t color = buffer[i * width + j];
+            SDL_SetRenderDrawColor(renderer, color, color, color, SDL_ALPHA_OPAQUE);
+            SDL_RenderDrawPoint(renderer, j, i);
+        }
+    }
+    SDL_RenderPresent(renderer);
 }
 
 void pivro_display_tick()
