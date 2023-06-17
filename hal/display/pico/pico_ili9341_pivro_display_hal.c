@@ -9,6 +9,7 @@ void pivro_display_initialize(
     ili9341_display_initialize(
         width,
         height);
+    ili9341_display_init_draw_mode();
 }
 
 void pivro_display_resize(

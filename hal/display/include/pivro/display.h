@@ -7,8 +7,7 @@
 
 void pivro_display_initialize(
     uint16_t _width,
-    uint16_t _height
-);
+    uint16_t _height);
 
 void pivro_display_resize(
     uint16_t _x1,
@@ -20,7 +19,7 @@ void pivro_display_draw_buffer(
     uint16_t *_buffer,
     size_t _size);
 
-bool pivro_display_tick(size_t ms);
+bool pivro_display_tick(size_t _ms);
 
 void pivro_display_terminate();
 
