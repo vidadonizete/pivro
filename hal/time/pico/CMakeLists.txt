@@ -5,5 +5,6 @@ add_library(
 
 target_link_libraries(
     pico_pivro_time_hal
+    pico_stdlib
     pivro_time_hal
 )

@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-uint64_t time_ms_64();
+uint64_t pivro_time_us_64();
 
 #endif //_PIVRO_TIME_H_
